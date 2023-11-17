@@ -36,14 +36,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
+      backgroundColor: Color.fromRGBO(30, 30, 30, 100),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircularProgressIndicator(),
             SizedBox(height: 10),
-            Text('Loading...'),
+            Text('Loading...', style: TextStyle(color: Colors.white)),
           ],
         ),
       ),
@@ -55,11 +56,15 @@ class MyAppContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(30, 30, 30, 100),
       appBar: AppBar(
-        title: Text('My App'),
+        backgroundColor: Colors.transparent,
+        title: const Text('My App',
+            style: TextStyle(color: Color.fromRGBO(30, 30, 30, 100))),
       ),
-      body: Center(
-        child: Text('Welcome to My App!'),
+      body: const Center(
+        child:
+            Text('Welcome to My App!', style: TextStyle(color: Colors.white)),
       ),
     );
   }
