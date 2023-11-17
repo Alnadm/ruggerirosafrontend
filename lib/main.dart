@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color.fromRGBO(30, 30, 30, 100),
+      backgroundColor: Color(0xFF1E1E1E),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,11 +56,10 @@ class MyAppContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(30, 30, 30, 100),
+      backgroundColor: const Color(0xFF1E1E1E),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text('My App',
-            style: TextStyle(color: Color.fromRGBO(30, 30, 30, 100))),
+        title: const Text('My App', style: TextStyle(color: Colors.white)),
       ),
       body: const Center(
         child:
