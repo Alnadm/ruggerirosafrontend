@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_dropzone/flutter_dropzone.dart';
-import 'dart:developer';
 
 class FileUploader extends StatefulWidget {
   @override
@@ -15,57 +13,51 @@ class FileUploader extends StatefulWidget {
 class _FileUploaderState extends State<FileUploader> {
   String _filePath = '';
   String _fileContent = '';
-  late DropzoneViewController controller;
-
   Future<void> _pickFile() async {
-    try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['csv'],
-      );
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['csv'],
+    );
 
-      if (result != null && result.files.isNotEmpty) {
-        PlatformFile file = result.files.first;
-        setState(() {
-          _filePath = file.name!;
-        });
+    if (result != null && result.files.isNotEmpty) {
+      PlatformFile file = result.files.first;
+      setState(() {
+        _filePath = file.name!;
+      });
 
-        print("File name: $_filePath");
+      print("File name: $_filePath");
 
-        try {
-          if (file.bytes != null) {
-            // If file has bytes directly, use them
-            String fileContent = String.fromCharCodes(file.bytes!);
+      try {
+        if (file.bytes != null) {
+          // If file has bytes directly, use them
+          String fileContent = String.fromCharCodes(file.bytes!);
 
-            setState(() {
-              _fileContent = fileContent;
-            });
+          setState(() {
+            _fileContent = fileContent;
+          });
 
-            // Call your HTTP endpoint with the file content
-            await _uploadFile(fileContent);
-          } else {
-            // If file.bytes is null, attempt to read the file using dart:io
-            File ioFile = File(file.path!);
-            List<int> fileBytes = await ioFile.readAsBytes();
+          // Call your HTTP endpoint with the file content
+          await _uploadFile(fileContent);
+        } else {
+          // If file.bytes is null, attempt to read the file using dart:io
+          File ioFile = File(file.path!);
+          List<int> fileBytes = await ioFile.readAsBytes();
 
-            String fileContent = String.fromCharCodes(fileBytes);
+          String fileContent = String.fromCharCodes(fileBytes);
 
-            setState(() {
-              _fileContent = fileContent;
-            });
+          setState(() {
+            _fileContent = fileContent;
+          });
 
-            // Call your HTTP endpoint with the file content
-            await _uploadFile(fileContent);
-          }
-        } catch (e) {
-          print('Error reading file content: $e');
+          // Call your HTTP endpoint with the file content
+          await _uploadFile(fileContent);
         }
-      } else {
-        // Handle the case where the user cancels file selection
-        log('File selection canceled');
+      } catch (e) {
+        print('Error reading file content: $e');
       }
-    } on Exception catch (e) {
-      log("Erro na leitura do arquivo");
+    } else {
+      // Handle the case where the user cancels file selection
+      print('File selection canceled');
     }
   }
 
@@ -101,7 +93,7 @@ class _FileUploaderState extends State<FileUploader> {
           child: Text('Faça o upload do Arquivo de Audiências aqui:',
               style: Theme.of(context).textTheme.bodyText1),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         ElevatedButton(
           onPressed: _pickFile,
           style: ElevatedButton.styleFrom(
@@ -126,7 +118,7 @@ class _FileUploaderState extends State<FileUploader> {
             height: MediaQuery.of(context).size.height - 570, // Adjust height
             alignment: Alignment.center,
             child: Text(
-              'Clique para enviar o CSV',
+              'Clique para enviar o',
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
