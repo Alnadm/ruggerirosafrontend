@@ -93,20 +93,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-class MyAppContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF1E1E1E),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text('My App', style: TextStyle(color: Colors.white)),
-      ),
-      body: const Center(
-        child:
-            Text('Welcome to My App!', style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
-}
