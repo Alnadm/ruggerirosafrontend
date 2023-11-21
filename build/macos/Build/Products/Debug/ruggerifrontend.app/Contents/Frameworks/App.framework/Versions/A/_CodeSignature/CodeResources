@@ -10,11 +10,11 @@
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.bin</key>
 		<data>
-		+Al5Z/IyTcm2ErBOjNNqg/DOzak=
+		akNItbvWAkSZgYd0u2wPu7grDoE=
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<data>
-		6p0VCwtFQz7Jy+VFu8h+x+kxxOM=
+		EbgZlPN7/LLZJ/Mc9v0RheX9d+I=
 		</data>
 		<key>Resources/flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Resources/flutter_assets/NOTICES.Z</key>
 		<data>
-		Xi2z7AG3rv8UJ8DApwVMMERFQGU=
+		NgfJpvvOWn2SiydrsOjbeHoF4cg=
 		</data>
 		<key>Resources/flutter_assets/assets/images/2.0x/flutter_logo.png</key>
 		<data>
@@ -31,6 +31,10 @@
 		<key>Resources/flutter_assets/assets/images/3.0x/flutter_logo.png</key>
 		<data>
 		URIqJlAOM/qejwuIf5bwKjMOSaM=
+		</data>
+		<key>Resources/flutter_assets/assets/images/LogoRuggeri.png</key>
+		<data>
+		/iAMmwF4g3oiIe4MvvrR1o6q/4I=
 		</data>
 		<key>Resources/flutter_assets/assets/images/flutter_logo.png</key>
 		<data>
@@ -46,7 +50,7 @@
 		</data>
 		<key>Resources/flutter_assets/kernel_blob.bin</key>
 		<data>
-		LjaGcZOJ90IOPpmrBJ2nGSkRefY=
+		FHhHqRiSsqQYg/On+/BVV5j2u6U=
 		</data>
 		<key>Resources/flutter_assets/packages/flutter_dropzone_web/assets/flutter_dropzone.js</key>
 		<data>
@@ -74,14 +78,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			TZd0nZfuhUfRBCh6iFOvl6r/2ig4yZjBlWk8lx9/yEo=
+			/TZmK8z6Y5e4YjF77CdLT9p3jtJMTWKuuTdsNCDywrY=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			H5rI+jhS2mDYGkvwBR7UBBIwdsgu1sWawfhxstoSzx4=
+			ozKFEe+d1PbUnOSQDT+x4Bxe/E1m6N8rxjJhlcRdP+Q=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/FontManifest.json</key>
@@ -95,7 +99,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YvZ7GNDEDNUL/APBT1efzVWFlSWLwACUHKJjasoBp1g=
+			WpI6V8MXP30YuJOgxkul1agLSze5mfvqSVnqRjEb2qE=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/assets/images/2.0x/flutter_logo.png</key>
@@ -110,6 +114,13 @@
 			<key>hash2</key>
 			<data>
 			427KBrJEB0i9/B5Hgf4RkNsQ2zG6TkhczkEaDw7mYb8=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/images/LogoRuggeri.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			E2fASofK4ttECPDbvolsPukRzXBqBjUDO3WA5tjcD7g=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/assets/images/flutter_logo.png</key>
@@ -137,7 +148,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Xs6erycTx23/a6W1uEQsqsUUTEZCyRLr5DGrya6RsCQ=
+			tklZ1wCBD+/qqZ10YfBnjiKOFu9a6MW8yoEkHyAi9mQ=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/packages/flutter_dropzone_web/assets/flutter_dropzone.js</key>

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:ruggerifrontend/home/file_uploader.dart';
+import 'package:ruggerifrontend/home/modal_bottom.dart';
 import 'package:ruggerifrontend/theme/theme.dart';
 
 class Home extends StatelessWidget {
@@ -89,12 +90,14 @@ class Home extends StatelessWidget {
                     children: [
                       PurpleContainerWithText(
                         color: Theme.of(context).cardColor,
+                        borderColor: Colors.transparent,
                         text:
                             "Esse sistema começou a pouco. Sim, ele ainda é uma porcaria",
                         textColor: Colors.white,
                       ),
                       PurpleContainerWithText(
                           color: Theme.of(context).cardTheme.color!,
+                          borderColor: Colors.black,
                           text:
                               "Mas a vida é assim mesmo. Começamos devagarzinho, né?",
                           textColor:
@@ -115,9 +118,73 @@ class Home extends StatelessWidget {
                     height: 40,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FileUploader(),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 0, 0, 10),
+                            child: Text("Lotes enviados:",
+                                style: Theme.of(context).textTheme.bodyText1),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.38,
+                            height: MediaQuery.of(context).size.height - 500,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
+                                    child: const InfoCard(
+                                        data: '2023-11-18',
+                                        quantidadeArquivos: 10,
+                                        falhas: 2),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
+                                    child: const InfoCard(
+                                        data: '2023-11-18',
+                                        quantidadeArquivos: 10,
+                                        falhas: 2),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
+                                    child: const InfoCard(
+                                        data: '2023-11-18',
+                                        quantidadeArquivos: 10,
+                                        falhas: 2),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
+                                    child: const InfoCard(
+                                        data: '2023-11-18',
+                                        quantidadeArquivos: 10,
+                                        falhas: 2),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
+                                    child: const InfoCard(
+                                        data: '2023-11-18',
+                                        quantidadeArquivos: 10,
+                                        falhas: 2),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
+                                    child: const InfoCard(
+                                        data: '2023-11-18',
+                                        quantidadeArquivos: 10,
+                                        falhas: 2),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ],
@@ -143,11 +210,15 @@ class Home extends StatelessWidget {
 
 class PurpleContainerWithText extends StatelessWidget {
   final Color color;
+  final Color borderColor;
   final Color textColor;
   final String text;
 
   PurpleContainerWithText(
-      {required this.color, required this.text, required this.textColor});
+      {required this.color,
+      required this.borderColor,
+      required this.text,
+      required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +230,7 @@ class PurpleContainerWithText extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.black,
+          color: borderColor,
           width: 1,
         ),
       ),
@@ -172,6 +243,168 @@ class PurpleContainerWithText extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: textColor,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class InfoCard extends StatefulWidget {
+  final String data;
+  final int quantidadeArquivos;
+  final int falhas;
+
+  const InfoCard({
+    required this.data,
+    required this.quantidadeArquivos,
+    required this.falhas,
+  });
+
+  @override
+  _InfoCardState createState() => _InfoCardState();
+}
+
+class _InfoCardState extends State<InfoCard> with TickerProviderStateMixin {
+  bool isHovered = false;
+  late AnimationController _colorAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _colorAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 600),
+    );
+  }
+
+  @override
+  void dispose() {
+    _colorAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onHover: (hovering) {
+        setState(() {
+          isHovered = hovering;
+          if (isHovered) {
+            _colorAnimationController.forward();
+          } else {
+            _colorAnimationController.reverse();
+          }
+        });
+      },
+      onTap: () {
+        // Handle onTap if needed
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext context) {
+            return const BottomModal(
+                content: Text(
+              'This is the modal content',
+              style: TextStyle(fontSize: 24.0),
+            ));
+          },
+          constraints: BoxConstraints.expand(
+              width: MediaQuery.of(context).size.width * 0.80,
+              height: MediaQuery.of(context).size.height * 0.95),
+        );
+      },
+      child: Card(
+        elevation: 0,
+        //shadowColor: Colors.transparent,
+        //surfaceTintColor: Colors.transparent,
+        margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        child: AnimatedBuilder(
+          animation: _colorAnimationController,
+          builder: (context, child) {
+            return Container(
+              decoration: BoxDecoration(
+                color: ColorTween(
+                        begin: Theme.of(context).cardTheme.color,
+                        end: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .color!
+                            .withOpacity(0.3))
+                    .animate(_colorAnimationController)
+                    .value,
+              ),
+              padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Data"),
+                      Text(
+                        widget.data,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 30.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Arquivos no Lote:"),
+                      Text(
+                        '${widget.quantidadeArquivos}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 30.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Falhas"),
+                      Text(
+                        '${widget.falhas}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class InfoColumn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height - 100,
+        child: Column(
+          children: [
+            InfoCard(
+              data: '2023-11-18',
+              quantidadeArquivos: 10,
+              falhas: 2,
+            ),
+            InfoCard(
+              data: '2023-11-17',
+              quantidadeArquivos: 15,
+              falhas: 1,
+            ),
+            InfoCard(
+              data: '2023-11-16',
+              quantidadeArquivos: 8,
+              falhas: 0,
+            ),
+            // Add more InfoCard widgets as needed
+          ],
         ),
       ),
     );

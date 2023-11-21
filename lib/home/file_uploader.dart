@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:ruggerifrontend/home/modal_bottom.dart';
 
 class FileUploader extends StatefulWidget {
   @override
@@ -64,6 +65,7 @@ class _FileUploaderState extends State<FileUploader> {
   Future<void> _uploadFile(String fileContent) async {
     try {
       print(fileContent);
+
       final response = await http.post(
         Uri.parse('http://localhost:8081/remoto'),
         //headers: {'Content-Type': 'application/json'},
@@ -71,6 +73,20 @@ class _FileUploaderState extends State<FileUploader> {
       );
       if (response.statusCode == 200) {
         // Handle a successful response
+        // showModalBottomSheet(
+        //   context: context,
+        //   isScrollControlled: true,
+        //   builder: (BuildContext context) {
+        //     return const BottomModal(
+        //         content: Text(
+        //       'This is the modal content',
+        //       style: TextStyle(fontSize: 24.0),
+        //     ));
+        //   },
+        //   constraints: BoxConstraints.expand(
+        //       width: MediaQuery.of(context).size.width * 0.80,
+        //       height: MediaQuery.of(context).size.height * 0.95),
+        //);
         print('File uploaded successfully');
       } else {
         // Handle errors
@@ -95,49 +111,35 @@ class _FileUploaderState extends State<FileUploader> {
         ),
         const SizedBox(height: 15),
         ElevatedButton(
-          onPressed: _pickFile,
+          onPressed: () {
+            _pickFile();
+          },
           style: ElevatedButton.styleFrom(
-            backgroundColor:
-                Colors.transparent, // Set background color to transparent
-            // onPrimary: Theme.of(context).cardColor, // Set text color
-            elevation: 0,
-            onPrimary: Colors.transparent,
-            primary: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(10.0), // Set border radius if needed
-              side: BorderSide(
-                color: Theme.of(context).cardColor, // Set border color
-                width: 2.0, // Set border width
-                style: BorderStyle.solid, // Set border style to dashed
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              surfaceTintColor: Colors.transparent,
+              disabledBackgroundColor: Colors.transparent,
+              foregroundColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                side: BorderSide(
+                  color: Theme.of(context).textTheme.bodyText1!.color!,
+                  width: 2.0,
+                ),
               ),
-            ),
-          ),
+              shadowColor: Colors.transparent),
           child: Container(
-            width: 400,
-            height: MediaQuery.of(context).size.height - 570, // Adjust height
+            width: MediaQuery.of(context).size.width - 890, // Adjust width),
+            height: MediaQuery.of(context).size.height - 500, // Adjust height
             alignment: Alignment.center,
             child: Text(
-              'Clique para enviar o',
+              'Clique para enviar o Arquivo',
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
         ),
       ],
     );
-  }
-
-  void onDrop(List<dynamic> ev) async {
-    if (ev != null && ev.isNotEmpty) {
-      if (ev[0] is PlatformFile) {
-        PlatformFile file = ev[0] as PlatformFile;
-        await processFile(file);
-      } else {
-        print('Error: Unexpected type in the event. Please try again.');
-      }
-    } else {
-      print('Error: Event is null or empty. Please try again.');
-    }
   }
 
   Future<void> processFile(PlatformFile file) async {

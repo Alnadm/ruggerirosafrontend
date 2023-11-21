@@ -57,7 +57,7 @@ class AppTheme {
       ),
     ),
     cardColor: Color(0xFF6B420C),
-    cardTheme: CardTheme(
+    cardTheme: const CardTheme(
       color: Color(0xFF313030),
     ),
     inputDecorationTheme: InputDecorationTheme(
