@@ -3,7 +3,9 @@ import 'dart:typed_data';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:ruggerifrontend/home/info_card.dart';
 import 'package:ruggerifrontend/home/modal_bottom.dart';
 
 class FileUploader extends StatefulWidget {
@@ -14,6 +16,10 @@ class FileUploader extends StatefulWidget {
 class _FileUploaderState extends State<FileUploader> {
   String _filePath = '';
   String _fileContent = '';
+  InfoListController controllerInfoList = Get.put(InfoListController());
+  BottomModalController controllerBottomModal = BottomModalController();
+  late Future<void> _uploadFileFuture = Future.value(null);
+
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -30,17 +36,14 @@ class _FileUploaderState extends State<FileUploader> {
 
       try {
         if (file.bytes != null) {
-          // If file has bytes directly, use them
           String fileContent = String.fromCharCodes(file.bytes!);
-
           setState(() {
             _fileContent = fileContent;
           });
 
           // Call your HTTP endpoint with the file content
-          await _uploadFile(fileContent);
+          _uploadFileFuture = _uploadFile(fileContent);
         } else {
-          // If file.bytes is null, attempt to read the file using dart:io
           File ioFile = File(file.path!);
           List<int> fileBytes = await ioFile.readAsBytes();
 
@@ -51,50 +54,70 @@ class _FileUploaderState extends State<FileUploader> {
           });
 
           // Call your HTTP endpoint with the file content
-          await _uploadFile(fileContent);
+          _uploadFileFuture = _uploadFile(fileContent);
         }
       } catch (e) {
         print('Error reading file content: $e');
       }
     } else {
-      // Handle the case where the user cancels file selection
       print('File selection canceled');
     }
   }
 
   Future<void> _uploadFile(String fileContent) async {
     try {
-      print(fileContent);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: Text('Fazendo o Upload...'),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            children: const [
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: CircularProgressIndicator(),
+              ),
+            ],
+          );
+        },
+      );
 
       final response = await http.post(
         Uri.parse('http://localhost:8081/remoto'),
-        //headers: {'Content-Type': 'application/json'},
         body: {'csv': fileContent},
       );
+
+      Navigator.pop(context); // Close the loading indicator dialog
+
       if (response.statusCode == 200) {
-        // Handle a successful response
-        // showModalBottomSheet(
-        //   context: context,
-        //   isScrollControlled: true,
-        //   builder: (BuildContext context) {
-        //     return const BottomModal(
-        //         content: Text(
-        //       'This is the modal content',
-        //       style: TextStyle(fontSize: 24.0),
-        //     ));
-        //   },
-        //   constraints: BoxConstraints.expand(
-        //       width: MediaQuery.of(context).size.width * 0.80,
-        //       height: MediaQuery.of(context).size.height * 0.95),
-        //);
         print('File uploaded successfully');
+        final Map<String, dynamic> responseBody = json.decode(response.body);
+
+        print(responseBody['token']);
+        //await controllerInfoList.fetchAllComunicados();
+        await controllerInfoList
+            .getListForTokenRecentlyUpdated(responseBody['token']);
+        print("Passamos Fetch GetListForToken");
+        controllerBottomModal.controlaModal(
+          Get.context!,
+          responseBody['token'],
+        );
+        // Extract the token from the response
+        return responseBody['token'];
       } else {
         // Handle errors
-        print('Failed to upload file. Status code: ${response.statusCode}');
+        throw Exception(
+          'Failed to upload file. Status code: ${response.statusCode}',
+        );
       }
     } catch (e) {
       // Handle exceptions
       print('Error uploading file: $e');
+      throw Exception('Error uploading file: $e');
     }
   }
 
@@ -106,8 +129,10 @@ class _FileUploaderState extends State<FileUploader> {
       children: <Widget>[
         Align(
           alignment: Alignment.topLeft,
-          child: Text('Faça o upload do Arquivo de Audiências aqui:',
-              style: Theme.of(context).textTheme.bodyText1),
+          child: Text(
+            'Faça o upload do Arquivo de Audiências aqui:',
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
         ),
         const SizedBox(height: 15),
         ElevatedButton(
@@ -115,22 +140,23 @@ class _FileUploaderState extends State<FileUploader> {
             _pickFile();
           },
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              surfaceTintColor: Colors.transparent,
-              disabledBackgroundColor: Colors.transparent,
-              foregroundColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide(
-                  color: Theme.of(context).textTheme.bodyText1!.color!,
-                  width: 2.0,
-                ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            surfaceTintColor: Colors.transparent,
+            disabledBackgroundColor: Colors.transparent,
+            foregroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              side: BorderSide(
+                color: Theme.of(context).textTheme.bodyText1!.color!,
+                width: 2.0,
               ),
-              shadowColor: Colors.transparent),
+            ),
+            shadowColor: Colors.transparent,
+          ),
           child: Container(
-            width: MediaQuery.of(context).size.width - 890, // Adjust width),
-            height: MediaQuery.of(context).size.height - 500, // Adjust height
+            width: MediaQuery.of(context).size.width - 890,
+            height: MediaQuery.of(context).size.height - 500,
             alignment: Alignment.center,
             child: Text(
               'Clique para enviar o Arquivo',
@@ -138,31 +164,20 @@ class _FileUploaderState extends State<FileUploader> {
             ),
           ),
         ),
+        // Use FutureBuilder only when needed
+        if (_uploadFileFuture != null)
+          FutureBuilder(
+            future: _uploadFileFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return SizedBox.shrink();
+              } else {
+                // Handle other states as needed
+                return SizedBox.shrink();
+              }
+            },
+          ),
       ],
     );
-  }
-
-  Future<void> processFile(PlatformFile file) async {
-    try {
-      if (file.readStream != null) {
-        List<int> fileBytes = [];
-        await for (List<int> chunk in file.readStream!) {
-          fileBytes.addAll(chunk);
-        }
-
-        String fileContent = utf8.decode(fileBytes);
-
-        setState(() {
-          _fileContent = fileContent;
-        });
-
-        // Call your HTTP endpoint with the file content
-        await _uploadFile(fileContent);
-      } else {
-        print('Error: File read stream is null. Please try again.');
-      }
-    } catch (e) {
-      print('Error reading file content: $e');
-    }
   }
 }

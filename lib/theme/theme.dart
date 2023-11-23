@@ -60,6 +60,7 @@ class AppTheme {
     cardTheme: const CardTheme(
       color: Color(0xFF313030),
     ),
+    errorColor: Color(0xFFC02A2A),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.grey.shade800,
@@ -113,6 +114,7 @@ class AppTheme {
     cardTheme: const CardTheme(
       color: Color.fromARGB(255, 235, 235, 235),
     ),
+    errorColor: Colors.red[100],
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Color(0xfff6f6f6),
