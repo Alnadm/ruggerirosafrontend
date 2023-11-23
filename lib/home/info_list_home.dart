@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:ruggerifrontend/home/info_card.dart';
 import 'package:ruggerifrontend/home/modal_bottom.dart';
 
@@ -34,10 +35,6 @@ class InfoListHome extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: List.generate(controller.listTokens.length, (index) {
-                  List<dynamic> sortedTokenList =
-                      List.from(controller.listTokens[index]);
-                  sortedTokenList.sort(
-                      (a, b) => b['dataInsercao'].compareTo(a['dataInsercao']));
                   return Container(
                     margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
                     child: InfoCardHome(

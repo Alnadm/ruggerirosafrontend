@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:ruggerifrontend/home/modal_bottom.dart';
 import 'package:http/http.dart' as http;
 
@@ -153,6 +154,15 @@ class InfoListController extends GetxController {
     });
 
     listTokens.add(tokenGroup);
+
+    listTokens.sort((a, b) {
+      DateTime dateA =
+          DateFormat("dd/MM/yyyy hh:mm").parse(a.first['dataInsercao']);
+      DateTime dateB =
+          DateFormat("dd/MM/yyyy hh:mm").parse(b.first['dataInsercao']);
+      print("Date A: $dateA, Date B: $dateB");
+      return dateB.compareTo(dateA);
+    });
   }
 
   Future<void> groupItemsByToken() async {
@@ -173,7 +183,14 @@ class InfoListController extends GetxController {
         tokenGroups[token]!.add(item);
       }
     });
-
     listTokens.addAll(newTokenGroups);
+    listTokens.sort((a, b) {
+      DateTime dateA =
+          DateFormat("dd/MM/yyyy hh:mm").parse(a.first['dataInsercao']);
+      DateTime dateB =
+          DateFormat("dd/MM/yyyy hh:mm").parse(b.first['dataInsercao']);
+      print("Date A: $dateA, Date B: $dateB");
+      return dateB.compareTo(dateA);
+    });
   }
 }
