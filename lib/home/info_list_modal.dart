@@ -126,7 +126,7 @@ class _InfoCardModalState extends State<InfoCardModal>
                   Text("Data"),
                   Text(
                     widget.data,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
@@ -152,7 +152,7 @@ class _InfoCardModalState extends State<InfoCardModal>
                   Text("Processo"),
                   Text(
                     widget.processo,
-                    style: TextStyle(fontWeight: FontWeight.w200),
+                    style: TextStyle(fontWeight: FontWeight.w400),
                   ),
                 ],
               ),

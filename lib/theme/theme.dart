@@ -23,6 +23,7 @@ class ThemeController extends GetxController {
 
 class AppTheme {
   static final darkTheme = ThemeData(
+    fontFamily: 'Urbane',
     scaffoldBackgroundColor: const Color(0xFF1E1E1E),
     colorScheme: const ColorScheme.dark(),
     buttonTheme: ButtonThemeData(
@@ -77,6 +78,7 @@ class AppTheme {
   );
 
   static final lightTheme = ThemeData(
+    fontFamily: 'Urbane',
     scaffoldBackgroundColor: Color.fromARGB(255, 246, 246, 246),
     colorScheme: const ColorScheme.light(),
     buttonTheme: ButtonThemeData(

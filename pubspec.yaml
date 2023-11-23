@@ -22,6 +22,7 @@ dependencies:
   flutter_dropzone: ^3.0.6
   collection: ^1.15.0
   intl: ^0.18.1
+  dotted_border: ^2.1.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
@@ -32,7 +33,24 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
+  fonts:
+    - family: Urbane
+      fonts:
+        - asset: assets/fonts/Urbane-Bold.ttf
+        - asset: assets/fonts/Urbane-BoldItalic.ttf
+        - asset: assets/fonts/Urbane-DemiBold.ttf
+        - asset: assets/fonts/Urbane-DemiBoldItalic.ttf
+        - asset: assets/fonts/Urbane-ExtraLight.ttf
+        - asset: assets/fonts/Urbane-ExtraLightItalic.ttf
+        - asset: assets/fonts/Urbane-Heavy.ttf
+        - asset: assets/fonts/Urbane-HeavyItalic.ttf
+        - asset: assets/fonts/Urbane-Light.ttf
+        - asset: assets/fonts/Urbane-LightItalic.ttf
+        - asset: assets/fonts/Urbane-Medium.ttf
+        - asset: assets/fonts/Urbane-MediumItalic.ttf
+        - asset: assets/fonts/Urbane-Thin.ttf
+        - asset: assets/fonts/Urbane-ThinItalic.ttf
+        
   # Enable generation of localized Strings from arb files.
   generate: true
 

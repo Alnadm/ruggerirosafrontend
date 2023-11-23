@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:io';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
@@ -110,15 +111,41 @@ class _FileUploaderState extends State<FileUploader> {
         return responseBody['token'];
       } else {
         // Handle errors
+        final Map<String, dynamic> errorBody = json.decode(response.body);
+        showErrorDialog('Ehhhh,', 'Não rolou a leitura deste arquivo');
         throw Exception(
           'Failed to upload file. Status code: ${response.statusCode}',
         );
       }
     } catch (e) {
       // Handle exceptions
+      showErrorDialog('Eita, ', 'Algum problema aconteceu...');
       print('Error uploading file: $e');
       throw Exception('Error uploading file: $e');
     }
+  }
+
+  void showErrorDialog(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -135,35 +162,56 @@ class _FileUploaderState extends State<FileUploader> {
           ),
         ),
         const SizedBox(height: 15),
-        ElevatedButton(
-          onPressed: () {
-            _pickFile();
+        DottedBorder(
+          color: Theme.of(context).textTheme.bodyText1!.color!,
+          strokeWidth: 1.5,
+          radius: Radius.circular(15),
+          dashPattern: [10, 10],
+          customPath: (size) {
+            return Path()
+              ..moveTo(15, 0)
+              ..lineTo(size.width - 15, 0)
+              ..arcToPoint(Offset(size.width, 15), radius: Radius.circular(15))
+              ..lineTo(size.width, size.height - 15)
+              ..arcToPoint(Offset(size.width - 15, size.height),
+                  radius: Radius.circular(15))
+              ..lineTo(15, size.height)
+              ..arcToPoint(Offset(0, size.height - 15),
+                  radius: Radius.circular(15))
+              ..lineTo(0, 15)
+              ..arcToPoint(Offset(15, 0), radius: Radius.circular(15));
           },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            surfaceTintColor: Colors.transparent,
-            disabledBackgroundColor: Colors.transparent,
-            foregroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              side: BorderSide(
-                color: Theme.of(context).textTheme.bodyText1!.color!,
-                width: 2.0,
+          child: ElevatedButton(
+            onPressed: () {
+              _pickFile();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              surfaceTintColor: Colors.transparent,
+              disabledBackgroundColor: Colors.transparent,
+              foregroundColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                // side: BorderSide(
+                //   color: Theme.of(context).textTheme.bodyText1!.color!,
+                //   width: 2.0,
+                // ),
               ),
+              shadowColor: Colors.transparent,
             ),
-            shadowColor: Colors.transparent,
-          ),
-          child: Container(
-            width: MediaQuery.of(context).size.width - 890,
-            height: MediaQuery.of(context).size.height - 500,
-            alignment: Alignment.center,
-            child: Text(
-              'Clique para enviar o Arquivo',
-              style: Theme.of(context).textTheme.bodyText1,
+            child: Container(
+              width: MediaQuery.of(context).size.width - 890,
+              height: MediaQuery.of(context).size.height - 500,
+              alignment: Alignment.center,
+              child: Text(
+                'Clique para enviar o Arquivo',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
             ),
           ),
         ),
+
         // Use FutureBuilder only when needed
         if (_uploadFileFuture != null)
           FutureBuilder(
@@ -179,5 +227,38 @@ class _FileUploaderState extends State<FileUploader> {
           ),
       ],
     );
+  }
+}
+
+class DashedBorderPainter extends CustomPainter {
+  final Color color;
+  final double strokeWidth;
+
+  DashedBorderPainter({required this.color, required this.strokeWidth});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = color
+      ..strokeWidth = strokeWidth
+      ..style = PaintingStyle.stroke;
+
+    const double dashWidth = 5.0;
+    const double gapWidth = 5.0;
+    double startX = 0.0;
+
+    while (startX < size.width) {
+      canvas.drawLine(
+        Offset(startX, size.height / 2),
+        Offset(startX + dashWidth, size.height / 2),
+        paint,
+      );
+      startX += dashWidth + gapWidth;
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }

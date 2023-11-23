@@ -86,7 +86,9 @@ class _BottomModalState extends State<BottomModal> {
                       .color!
                       .withOpacity(0.4),
                   icon: const Icon(Icons.close),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
               ),
 

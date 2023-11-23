@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:ruggerifrontend/home/file_uploader.dart';
-import 'package:ruggerifrontend/home/info_card.dart';
 import 'package:ruggerifrontend/home/info_list_home.dart';
-import 'package:ruggerifrontend/home/modal_bottom.dart';
 import 'package:ruggerifrontend/theme/theme.dart';
 
 class Home extends StatelessWidget {
   final ThemeController _themeController = Get.put(ThemeController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,29 +23,41 @@ class Home extends StatelessWidget {
             child: Drawer(
               backgroundColor: Colors.transparent,
               width: 90.0,
-              child: Container(
-                child: Material(
-                  color: Theme.of(context)
-                      .drawerTheme
-                      .backgroundColor, // Set your desired color here
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 20.0),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.home,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          // Handle your favorite icon tap
-                          // Navigator.pop(context); // Close the drawer
-                        },
+              child: Material(
+                color: Theme.of(context)
+                    .drawerTheme
+                    .backgroundColor, // Set your desired color here
+                borderRadius: BorderRadius.circular(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 30.0),
+                    Image.asset(
+                      'images/LogoRuggeri.png', // Adjust the path to your image
+                      width: 20, // Set your desired width
+                      // Set your desired height
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(height: 20.0),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Divider(
+                        color: Color.fromARGB(255, 107, 107, 107),
                       ),
-                      // Add more IconButton items as needed
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 20.0),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.home,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        // Handle your favorite icon tap
+                        // Navigator.pop(context); // Close the drawer
+                      },
+                    ),
+                    // Add more IconButton items as needed
+                  ],
                 ),
               ),
             ),
@@ -64,7 +75,7 @@ class Home extends StatelessWidget {
                         "Home",
                         style: TextStyle(
                           fontSize: 30,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           color: Theme.of(context).textTheme.bodyText1!.color,
                         ),
                       ),
@@ -88,7 +99,7 @@ class Home extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
@@ -104,7 +115,7 @@ class Home extends StatelessWidget {
                           color: Theme.of(context).cardTheme.color!,
                           borderColor: Colors.black,
                           text:
-                              "Mas a vida é assim mesmo. Começamos devagarzinho, né?",
+                              "Mas a vida é assim mesmo. Esta ruim agora e vai piorar",
                           textColor:
                               Theme.of(context).textTheme.bodyText1!.color!),
                     ],
@@ -137,58 +148,6 @@ class Home extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           InfoListHome()
-                          // Container(
-                          //   width: MediaQuery.of(context).size.width * 0.38,
-                          //   height: MediaQuery.of(context).size.height - 500,
-                          //   child: SingleChildScrollView(
-                          //     child: Column(
-                          //       children: [
-                          //         Container(
-                          //           margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
-                          //           child: const InfoCard(
-                          //               data: '2023-11-18',
-                          //               quantidadeArquivos: 10,
-                          //               falhas: 2),
-                          //         ),
-                          //         Container(
-                          //           margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
-                          //           child: const InfoCard(
-                          //               data: '2023-11-18',
-                          //               quantidadeArquivos: 10,
-                          //               falhas: 2),
-                          //         ),
-                          //         Container(
-                          //           margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
-                          //           child: const InfoCard(
-                          //               data: '2023-11-18',
-                          //               quantidadeArquivos: 10,
-                          //               falhas: 2),
-                          //         ),
-                          //         Container(
-                          //           margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
-                          //           child: const InfoCard(
-                          //               data: '2023-11-18',
-                          //               quantidadeArquivos: 10,
-                          //               falhas: 2),
-                          //         ),
-                          //         Container(
-                          //           margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
-                          //           child: const InfoCard(
-                          //               data: '2023-11-18',
-                          //               quantidadeArquivos: 10,
-                          //               falhas: 2),
-                          //         ),
-                          //         Container(
-                          //           margin: EdgeInsets.fromLTRB(30, 8, 10, 5),
-                          //           child: const InfoCard(
-                          //               data: '2023-11-18',
-                          //               quantidadeArquivos: 10,
-                          //               falhas: 2),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       ),
                     ],
@@ -220,8 +179,9 @@ class PurpleContainerWithText extends StatelessWidget {
   final Color textColor;
   final String text;
 
-  PurpleContainerWithText(
-      {required this.color,
+  const PurpleContainerWithText(
+      {super.key,
+      required this.color,
       required this.borderColor,
       required this.text,
       required this.textColor});
@@ -231,7 +191,7 @@ class PurpleContainerWithText extends StatelessWidget {
     return Container(
       width: 340,
       height: 200,
-      margin: EdgeInsets.only(right: 20),
+      margin: const EdgeInsets.only(right: 20),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(20),
@@ -246,7 +206,7 @@ class PurpleContainerWithText extends StatelessWidget {
           text,
           style: TextStyle(
             fontSize: 24,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             color: textColor,
           ),
         ),

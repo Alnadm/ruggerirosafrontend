@@ -52,7 +52,7 @@ class InfoListController extends GetxController {
         throw Exception('Failed to load data');
       }
     } catch (e) {
-      print('Error: $e');
+      print('Error InfoController All Tokens: $e');
     } finally {
       isFetching.value = false;
     }
@@ -82,7 +82,7 @@ class InfoListController extends GetxController {
         throw Exception('Server returned an error');
       }
     } catch (e) {
-      print('Error: $e');
+      print('Error InfoController Single Token: $e');
     } finally {
       isFetching.value = false;
     }
@@ -160,7 +160,6 @@ class InfoListController extends GetxController {
           DateFormat("dd/MM/yyyy hh:mm").parse(a.first['dataInsercao']);
       DateTime dateB =
           DateFormat("dd/MM/yyyy hh:mm").parse(b.first['dataInsercao']);
-      print("Date A: $dateA, Date B: $dateB");
       return dateB.compareTo(dateA);
     });
   }
@@ -189,7 +188,6 @@ class InfoListController extends GetxController {
           DateFormat("dd/MM/yyyy hh:mm").parse(a.first['dataInsercao']);
       DateTime dateB =
           DateFormat("dd/MM/yyyy hh:mm").parse(b.first['dataInsercao']);
-      print("Date A: $dateA, Date B: $dateB");
       return dateB.compareTo(dateA);
     });
   }

@@ -15,7 +15,10 @@ class InfoListHome extends StatelessWidget {
         print("ListTokens Length: ${controller.listTokens.length}");
 
         if (controller.listTokens.isEmpty) {
-          return Center(child: CircularProgressIndicator());
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(300, 200, 50, 0),
+            child: Center(child: CircularProgressIndicator()),
+          );
         }
 
         return Container(
@@ -142,7 +145,7 @@ class _InfoCardHomeState extends State<InfoCardHome>
                       Text("Data"),
                       Text(
                         widget.data,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -153,7 +156,7 @@ class _InfoCardHomeState extends State<InfoCardHome>
                       Text("Arquivos no Lote:"),
                       Text(
                         '${widget.quantidadeArquivos}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -164,7 +167,7 @@ class _InfoCardHomeState extends State<InfoCardHome>
                       Text("Falhas"),
                       Text(
                         '${widget.falhas}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                     ],
                   )
