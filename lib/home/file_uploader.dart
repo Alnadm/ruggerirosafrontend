@@ -71,9 +71,15 @@ class _FileUploaderState extends State<FileUploader> {
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
-            title: Text('Fazendo o Upload...'),
+            title: const Text(
+              'Fazendo o Upload...',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+              ),
+            ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(10.0),
             ),
             children: const [
               SizedBox(
@@ -88,7 +94,7 @@ class _FileUploaderState extends State<FileUploader> {
       );
 
       final response = await http.post(
-        Uri.parse('http://localhost:8081/remoto'),
+        Uri.parse('https://aliancajuridico.rj.r.appspot.com/remoto'),
         body: {'csv': fileContent},
       );
 

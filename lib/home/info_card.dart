@@ -14,6 +14,7 @@ class InfoListController extends GetxController {
   int currentPage = 0;
   int pageSize = 30;
   var isFetching = false.obs;
+  var uploadAll = false.obs;
 
   RxList<dynamic> get selectedTokenLote => _selectedTokenLote;
 
@@ -31,7 +32,7 @@ class InfoListController extends GetxController {
       isFetching.value = true;
       final response = await http.get(
         Uri.parse(
-            'http://localhost:8081/remoto/todos?page=$currentPage&size=$pageSize'),
+            'https://aliancajuridico.rj.r.appspot.com/remoto/todos?page=$currentPage&size=$pageSize'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -43,8 +44,10 @@ class InfoListController extends GetxController {
 
         if (content is List && content.isNotEmpty) {
           listAll.assignAll(content);
+          print("Chegou na chamada dos tokens");
           await groupItemsByToken();
           currentPage++;
+          print("Pagina atual: $currentPage");
         } else {
           print('Invalid data format: Expected a non-empty list');
         }
@@ -66,7 +69,7 @@ class InfoListController extends GetxController {
       };
 
       final response = await http.post(
-        Uri.parse('http://localhost:8081/remoto/token'),
+        Uri.parse('https://aliancajuridico.rj.r.appspot.com/remoto/token'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -154,7 +157,6 @@ class InfoListController extends GetxController {
     });
 
     listTokens.add(tokenGroup);
-
     listTokens.sort((a, b) {
       DateTime dateA =
           DateFormat("dd/MM/yyyy hh:mm").parse(a.first['dataInsercao']);

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ruggerifrontend/home/home.dart';
+import 'package:ruggerifrontend/login/auth_control.dart';
+import 'package:ruggerifrontend/login/login.dart';
 import 'package:ruggerifrontend/theme/theme.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:ui' as ui;
@@ -12,6 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final AuthController authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -19,7 +22,20 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => Home()),
+        GetPage(name: '/login', page: () => Login()),
+      ],
+      home: GetBuilder<AuthController>(
+        builder: (controller) {
+          return controller.isAuthenticated.value ? Home() : Login();
+        },
+      ),
+      // Add AuthObserver to observe route changes
+      // navigatorObservers: [
+      //   // AuthObserver(),
+      // ],
     );
   }
 }

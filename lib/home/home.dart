@@ -29,32 +29,53 @@ class Home extends StatelessWidget {
                     .backgroundColor, // Set your desired color here
                 borderRadius: BorderRadius.circular(10.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 30.0),
-                    Image.asset(
-                      'images/LogoRuggeri.png', // Adjust the path to your image
-                      width: 20, // Set your desired width
-                      // Set your desired height
-                      fit: BoxFit.cover,
+                    Column(
+                      children: [
+                        const SizedBox(height: 30.0),
+                        Image.asset(
+                          'images/LogoRuggeri.png', // Adjust the path to your image
+                          width: 20, // Set your desired width
+                          // Set your desired height
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(height: 20.0),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15, right: 15),
+                          child: Divider(
+                            color: Color.fromARGB(255, 107, 107, 107),
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.home,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            // Handle your favorite icon tap
+                            // Navigator.pop(context); // Close the drawer
+                          },
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 20.0),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Divider(
-                        color: Color.fromARGB(255, 107, 107, 107),
-                      ),
-                    ),
-                    const SizedBox(height: 20.0),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.home,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        // Handle your favorite icon tap
-                        // Navigator.pop(context); // Close the drawer
-                      },
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: const Icon(
+                            Icons.exit_to_app_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Get.toNamed(
+                              '/login',
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 20.0),
+                      ],
                     ),
                     // Add more IconButton items as needed
                   ],
