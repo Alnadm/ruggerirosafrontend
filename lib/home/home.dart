@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
                       children: [
                         const SizedBox(height: 30.0),
                         Image.asset(
-                          'images/LogoRuggeri.png', // Adjust the path to your image
+                          'assets/images/LogoRuggeri.png', // Adjust the path to your image
                           width: 20, // Set your desired width
                           // Set your desired height
                           fit: BoxFit.cover,

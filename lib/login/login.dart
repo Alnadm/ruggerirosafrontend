@@ -40,7 +40,7 @@ class Login extends StatelessWidget {
                 child: Stack(children: [
                   Center(
                     child: Image.asset(
-                      'images/backgroundlogin.png', // Adjust the path to your image
+                      'assets/images/backgroundlogin.png', // Adjust the path to your image
                       //width: 100, // Set your desired width
                       // Set your desired height
 
@@ -51,7 +51,7 @@ class Login extends StatelessWidget {
                   ),
                   Center(
                     child: Image.asset(
-                      'images/LogoRuggeri.png', // Adjust the path to your image
+                      'assets/images/LogoRuggeri.png', // Adjust the path to your image
                       width: 130, // Set your desired width
                       // Set your desired height
                       //fit: BoxFit.cover,

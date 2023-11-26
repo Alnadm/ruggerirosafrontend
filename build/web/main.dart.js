@@ -82582,7 +82582,7 @@ else return A.ax9()},
 $S:515}
 A.rp.prototype={
 K(a){var s,r,q,p,o=null,n=A.S(a),m=A.S(a),l=t.p
-m=A.d2(o,new A.HZ(B.z,90,A.js(B.X,!0,A.eN(10),A.dg(A.a([A.dg(A.a([B.xI,A.aqB("images/LogoRuggeri.png",B.kP,o,20),B.hc,B.Jw,B.hc,A.J7(o,B.DS,new A.a4x(),o)],l),B.aN,B.R,B.S),A.dg(A.a([A.J7(o,B.DW,new A.a4y(),o),B.hc],l),B.aN,B.R,B.S)],l),B.aN,B.e_,B.S),B.o,m.b9.a,0,o,o,o,o,o,B.cv),o),B.o,o,o,o,o,o,B.m_,o,o,o,o)
+m=A.d2(o,new A.HZ(B.z,90,A.js(B.X,!0,A.eN(10),A.dg(A.a([A.dg(A.a([B.xI,A.aqB("assets/images/LogoRuggeri.png",B.kP,o,20),B.hc,B.Jw,B.hc,A.J7(o,B.DS,new A.a4x(),o)],l),B.aN,B.R,B.S),A.dg(A.a([A.J7(o,B.DW,new A.a4y(),o),B.hc],l),B.aN,B.R,B.S)],l),B.aN,B.e_,B.S),B.o,m.b9.a,0,o,o,o,o,o,B.cv),o),B.o,o,o,o,o,o,B.m_,o,o,o,o)
 s=A.pl(A.a([A.c2("Home",o,o,o,A.dO(o,o,A.S(a).p3.y.b,o,o,o,o,o,o,o,o,30,o,o,B.bE,o,o,!0,o,o,o,o,o,o,o,o),o,o),A.aqv(new A.a4z(),o,o,o,t.w7)],l),B.aN,B.e_,B.S)
 r=A.S(a)
 q=A.S(a).y2.b
@@ -83019,7 +83019,7 @@ $S:0}
 A.nD.prototype={}
 A.rG.prototype={
 K(a){var s,r,q,p,o=null,n=t.w,m=A.bg(a,o,n).w,l=A.bg(a,o,n).w,k=A.eN(20),j=A.bg(a,o,n).w,i=A.bg(a,o,n).w,h=t.p
-j=A.d2(o,A.l5(B.cd,A.a([A.hk(A.aqB("images/backgroundlogin.png",B.kP,1/0,1/0),o,o),A.hk(A.aqB("images/LogoRuggeri.png",o,o,130),o,o)],h),B.a1,B.c7),B.o,o,o,B.zp,o,i.a.b*0.65,o,o,o,o,j.a.a*0.35)
+j=A.d2(o,A.l5(B.cd,A.a([A.hk(A.aqB("assets/images/backgroundlogin.png",B.kP,1/0,1/0),o,o),A.hk(A.aqB("assets/images/LogoRuggeri.png",o,o,130),o,o)],h),B.a1,B.c7),B.o,o,o,B.zp,o,i.a.b*0.65,o,o,o,o,j.a.a*0.35)
 i=A.bg(a,o,n).w
 n=A.bg(a,o,n).w
 s=A.c2("Seja bem vindo\nde volta!",o,o,o,A.dO(o,o,B.l,o,o,o,o,o,o,o,o,25,o,o,B.bE,o,o,!0,o,o,o,o,o,o,o,o),o,o)
