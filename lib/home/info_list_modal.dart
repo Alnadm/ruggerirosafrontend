@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ruggerifrontend/home/info_card.dart';
@@ -32,6 +34,7 @@ class InfoListModal extends StatelessWidget {
                       idNomeCond: tokenGroup['nomeCondominio'],
                       processo: tokenGroup['numeroProcesso'],
                       status: tokenGroup['status'],
+                      statusDescricao: tokenGroup['statusDescricao'],
                       idDraft: tokenGroup['draftId'],
                       quantidadeArquivos:
                           controller.comunicadosPorLote(tokenGroup['token']),
@@ -55,6 +58,7 @@ class InfoCardModal extends StatefulWidget {
   final String idNomeCond;
   final String processo;
   final String status;
+  final String statusDescricao;
   final String idDraft;
   final int quantidadeArquivos;
   final int falhas;
@@ -66,6 +70,7 @@ class InfoCardModal extends StatefulWidget {
     required this.idNomeCond,
     required this.processo,
     required this.status,
+    required this.statusDescricao,
     required this.idDraft,
     required this.quantidadeArquivos,
     required this.falhas,
@@ -131,20 +136,21 @@ class _InfoCardModalState extends State<InfoCardModal>
                 ],
               ),
               SizedBox(width: 30.0),
-              Container(
-                width: 200,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Condominio"),
-                    Text(
-                      widget.idNomeCond,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ],
+              if (widget.status != "ERRO")
+                Container(
+                  width: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Condominio"),
+                      Text(
+                        widget.idNomeCond,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               SizedBox(width: 30.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,9 +177,14 @@ class _InfoCardModalState extends State<InfoCardModal>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Status"),
-                  Text(
-                    widget.status,
-                  ),
+                  if (widget.status == "ERRO")
+                    Text(
+                      latin1.decode(latin1.encode(widget.statusDescricao)),
+                    )
+                  else
+                    Text(
+                      widget.status,
+                    ),
                 ],
               ),
               SizedBox(width: 30.0),

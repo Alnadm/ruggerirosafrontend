@@ -39,7 +39,9 @@ class InfoListController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        final Map<String, dynamic> data = json.decode(response.body);
+        final String body = utf8.decode(response.bodyBytes);
+
+        final Map<String, dynamic> data = json.decode(body);
         final List<dynamic> content = data['content'];
 
         if (content is List && content.isNotEmpty) {
@@ -77,8 +79,8 @@ class InfoListController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        print("Recebeu a requisição corretamente");
-        List<dynamic> responseObject = jsonDecode(response.body);
+        final String body = utf8.decode(response.bodyBytes);
+        List<dynamic> responseObject = jsonDecode(body);
         listAll.addAll(responseObject);
         await addItemByTokenGroup(responseObject.first['token']);
       } else {

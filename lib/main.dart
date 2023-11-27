@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => Home()),
-        GetPage(name: '/login', page: () => Login()),
+        GetPage(
+            name: '/login', page: () => Login(), transition: Transition.fadeIn),
       ],
       home: GetBuilder<AuthController>(
         builder: (controller) {

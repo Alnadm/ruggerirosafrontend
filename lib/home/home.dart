@@ -69,9 +69,7 @@ class Home extends StatelessWidget {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            Get.toNamed(
-                              '/login',
-                            );
+                            Get.offNamed('/login');
                           },
                         ),
                         const SizedBox(height: 20.0),

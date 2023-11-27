@@ -72,7 +72,7 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(110, 120, 0, 50),
+                  padding: const EdgeInsets.fromLTRB(110, 110, 0, 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,6 +91,7 @@ class Login extends StatelessWidget {
                             maxLines: 1,
                             //controller: userController,
                             //maxLength: 200,
+
                             decoration: const InputDecoration(
                               labelText: "Usuário",
                               labelStyle: TextStyle(
@@ -106,7 +107,7 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                               contentPadding: EdgeInsets.only(
-                                bottom: 20.0,
+                                bottom: 10.0,
                               ),
                               enabledBorder: UnderlineInputBorder(
                                 //borderRadius: BorderRadius.circular(10.0),
@@ -116,7 +117,10 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            //style: AppStyle.defaultFormFieldText,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300),
                             validator: (value) =>
                                 value == null ? "Vazio hein" : null,
                           ),
@@ -144,7 +148,7 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                               contentPadding: EdgeInsets.only(
-                                bottom: 20.0,
+                                bottom: 10.0,
                               ),
                               enabledBorder: UnderlineInputBorder(
                                 // borderRadius: BorderRadius.circular(10.0),
@@ -154,12 +158,17 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300),
                             //style: AppStyle.defaultFormFieldText,
                             validator: (value) =>
                                 value == null ? "Vazio hein" : null,
                           ),
                         ),
                       ),
+                      RememberMeCheckbox(),
                       Container(
                         padding: EdgeInsets.only(right: 50, top: 20),
                         width: 380,
@@ -179,7 +188,7 @@ class Login extends StatelessWidget {
                                   false, // Set to true if you want to hide the previous screen during the transition
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             'Entrar',
                             style: TextStyle(color: Colors.white),
                           ),
@@ -193,6 +202,43 @@ class Login extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class RememberMeCheckbox extends StatelessWidget {
+  final RxBool rememberMe = false.obs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Obx(() => Checkbox(
+              value: rememberMe.value,
+              onChanged: (bool? value) {
+                rememberMe.value = value ?? false;
+              },
+              checkColor: Colors.white,
+              activeColor: Colors.grey.shade800,
+              fillColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.selected)) {
+                  return Colors.grey.shade800; // Set your selected color
+                } else {
+                  return Colors.grey
+                      .shade300; // Set to transparent for an outlined appearance
+                }
+              }),
+              //fillColor: ,
+            )),
+        const Text(
+          'Lembre de mim',
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            color: Colors.black,
+          ),
+        ),
+      ],
     );
   }
 }
