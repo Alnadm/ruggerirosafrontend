@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:ruggerifrontend/endpoints.dart';
 import 'package:ruggerifrontend/home/info_card.dart';
 import 'package:ruggerifrontend/home/modal_bottom.dart';
 
@@ -94,7 +95,7 @@ class _FileUploaderState extends State<FileUploader> {
       );
 
       final response = await http.post(
-        Uri.parse('https://aliancajuridico.rj.r.appspot.com/remoto'),
+        Uri.parse(Endpoints().enviaCSV),
         body: {'csv': fileContent},
       );
 

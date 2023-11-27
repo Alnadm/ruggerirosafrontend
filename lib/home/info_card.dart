@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:ruggerifrontend/endpoints.dart';
 import 'package:ruggerifrontend/home/modal_bottom.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,7 +33,7 @@ class InfoListController extends GetxController {
       isFetching.value = true;
       final response = await http.get(
         Uri.parse(
-            'https://aliancajuridico.rj.r.appspot.com/remoto/todos?page=$currentPage&size=$pageSize'),
+            Endpoints().recebeComunicadosPaginacao(currentPage, pageSize)),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -71,7 +72,7 @@ class InfoListController extends GetxController {
       };
 
       final response = await http.post(
-        Uri.parse('https://aliancajuridico.rj.r.appspot.com/remoto/token'),
+        Uri.parse(Endpoints().recebeUmComunicado),
         headers: {
           'Content-Type': 'application/json',
         },
