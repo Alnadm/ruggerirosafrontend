@@ -11,12 +11,15 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double widht = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: const Color(0xFF1E1E1E),
       body: Center(
         child: Container(
           width: MediaQuery.of(context).size.width * 0.70,
-          height: MediaQuery.of(context).size.height * 0.60,
+          height: MediaQuery.of(context).size.height * 0.80,
           decoration: BoxDecoration(
             // color: Colors.white,
             borderRadius:
@@ -27,7 +30,7 @@ class Login extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width * 0.350,
-                height: MediaQuery.of(context).size.height * 0.65,
+                //height: MediaQuery.of(context).size.height * 0.65,
                 decoration: const BoxDecoration(
                   //color: Colors.grey,
                   borderRadius: BorderRadius.only(
@@ -52,7 +55,8 @@ class Login extends StatelessWidget {
                   Center(
                     child: Image.asset(
                       'assets/images/LogoRuggeri.png', // Adjust the path to your image
-                      width: 130, // Set your desired width
+                      width: MediaQuery.of(context).size.width *
+                          0.1, // Set your desired width
                       // Set your desired height
                       //fit: BoxFit.cover,
                     ),
@@ -61,7 +65,7 @@ class Login extends StatelessWidget {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.350,
-                height: MediaQuery.of(context).size.height * 0.65,
+                height: MediaQuery.of(context).size.height * 0.90,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -72,7 +76,8 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(110, 110, 0, 50),
+                  padding:
+                      EdgeInsets.fromLTRB(widht * 0.05, height * 0.2, 0, 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,42 +92,44 @@ class Login extends StatelessWidget {
                       Container(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 30, 70, 10),
-                          child: TextFormField(
-                            maxLines: 1,
-                            //controller: userController,
-                            //maxLength: 200,
+                          child: Center(
+                            child: TextFormField(
+                              maxLines: 1,
+                              //controller: userController,
+                              //maxLength: 200,
 
-                            decoration: const InputDecoration(
-                              labelText: "Usuário",
-                              labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600),
-                              fillColor: Colors.white,
-                              focusedBorder: UnderlineInputBorder(
-                                // borderRadius: BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 2.0,
+                              decoration: const InputDecoration(
+                                labelText: "Usuário",
+                                labelStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600),
+                                fillColor: Colors.white,
+                                focusedBorder: UnderlineInputBorder(
+                                  // borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                contentPadding: EdgeInsets.only(
+                                  bottom: 10.0,
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  //borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 1.0,
+                                  ),
                                 ),
                               ),
-                              contentPadding: EdgeInsets.only(
-                                bottom: 10.0,
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                //borderRadius: BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
+                              style: const TextStyle(
                                   color: Colors.black,
-                                  width: 1.0,
-                                ),
-                              ),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w300),
+                              validator: (value) =>
+                                  value == null ? "Vazio hein" : null,
                             ),
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300),
-                            validator: (value) =>
-                                value == null ? "Vazio hein" : null,
                           ),
                         ),
                       ),
