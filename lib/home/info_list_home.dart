@@ -23,7 +23,7 @@ class InfoListHome extends StatelessWidget {
 
         return Container(
           width: MediaQuery.of(context).size.width * 0.38,
-          height: MediaQuery.of(context).size.height - 500,
+          height: MediaQuery.of(context).size.height * 0.38,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
