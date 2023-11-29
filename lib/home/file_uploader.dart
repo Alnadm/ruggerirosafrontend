@@ -208,8 +208,8 @@ class _FileUploaderState extends State<FileUploader> {
               shadowColor: Colors.transparent,
             ),
             child: Container(
-              width: MediaQuery.of(context).size.width - 890,
-              height: MediaQuery.of(context).size.height - 500,
+              width: MediaQuery.of(context).size.width * 0.35,
+              height: MediaQuery.of(context).size.height * 0.38,
               alignment: Alignment.center,
               child: Text(
                 'Clique para enviar o Arquivo',

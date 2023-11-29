@@ -207,9 +207,11 @@ class PurpleContainerWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Container(
-      width: 340,
-      height: 200,
+      width: width * 0.2,
+      height: height * 0.2,
       margin: const EdgeInsets.only(right: 20),
       decoration: BoxDecoration(
         color: color,
@@ -224,7 +226,7 @@ class PurpleContainerWithText extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: height > 768 ? 19 : 17,
             fontWeight: FontWeight.w600,
             color: textColor,
           ),
