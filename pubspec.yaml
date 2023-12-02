@@ -23,6 +23,7 @@ dependencies:
   collection: ^1.15.0
   intl: ^0.18.1
   dotted_border: ^2.1.0
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ruggerifrontend/home/info_card.dart';
+import 'package:ruggerifrontend/controller/info_list_controller.dart';
 
 class InfoListModal extends StatelessWidget {
   final String token;
@@ -13,8 +13,6 @@ class InfoListModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        print('InfoListModal rebuilt');
-        print("ListTokens Length: ${controller.listTokens.length}");
         if (controller.selectedTokenLote.isEmpty) {
           return Center(child: CircularProgressIndicator());
         }
