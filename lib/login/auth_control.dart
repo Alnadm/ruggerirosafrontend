@@ -6,12 +6,17 @@ import 'package:ruggerifrontend/controller/login_controller.dart';
 
 class AuthMiddleware extends GetMiddleware {
   Future<void> checkTokenAndNavigate(String? route) async {
-    final LoginController loginController = Get.put(LoginController());
-    bool tokenValido = await loginController.validarToken();
+    try {
+      final LoginController loginController = Get.put(LoginController());
+      bool tokenValido = await loginController.validarToken();
 
-    print("Middleware Chamado para autenticação:");
-    if (!tokenValido && route != '/login') {
-      print("Não autenticado, retorna pra Login");
+      print("Middleware Chamado para autenticação:");
+      if (!tokenValido && route != '/login') {
+        print("Não autenticado, retorna pra Login");
+        Get.offAllNamed('/login');
+      }
+    } catch (e) {
+      print("Erro na autenticação: $e");
       Get.offAllNamed('/login');
     }
   }

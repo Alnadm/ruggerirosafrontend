@@ -6,10 +6,13 @@ import 'package:ruggerifrontend/home/home.dart';
 import 'package:ruggerifrontend/login/auth_control.dart';
 import 'package:ruggerifrontend/login/login.dart';
 import 'package:ruggerifrontend/theme/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:ui' as ui;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
@@ -25,10 +28,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       getPages: [
         GetPage(
-          name: '/',
-          page: () => Home(),
-          middlewares: [authController],
-        ),
+            name: '/',
+            page: () => Home(),
+            middlewares: [authController],
+            transition: Transition.fadeIn),
         GetPage(
           name: '/login',
           page: () => Login(),
