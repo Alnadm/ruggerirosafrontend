@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ruggerifrontend/controller/login_controller.dart';
 import 'package:ruggerifrontend/home/file_uploader.dart';
 import 'package:ruggerifrontend/home/info_list_home.dart';
+import 'package:ruggerifrontend/login/login.dart';
 import 'package:ruggerifrontend/theme/theme.dart';
 
 class Home extends StatelessWidget {
   final ThemeController _themeController = Get.put(ThemeController());
+  final LoginController _loginController = Get.put(LoginController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Home({super.key});
@@ -69,6 +72,7 @@ class Home extends StatelessWidget {
                             color: Colors.white,
                           ),
                           onPressed: () {
+                            _loginController.logout();
                             Get.offNamed('/login');
                           },
                         ),

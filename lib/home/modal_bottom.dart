@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ruggerifrontend/home/info_card.dart';
+
 import 'package:ruggerifrontend/home/info_list_modal.dart';
 
 class BottomModalController extends GetxController {

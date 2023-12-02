@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ruggerifrontend/home/info_card.dart';
+import 'package:ruggerifrontend/controller/info_list_controller.dart';
 import 'package:ruggerifrontend/home/modal_bottom.dart';
 
 class InfoListHome extends StatelessWidget {
@@ -11,9 +11,6 @@ class InfoListHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        print('InfoListHome rebuilt');
-        print("ListTokens Length: ${controller.listTokens.length}");
-
         if (controller.listTokens.isEmpty) {
           return Padding(
             padding: const EdgeInsets.fromLTRB(300, 200, 50, 0),

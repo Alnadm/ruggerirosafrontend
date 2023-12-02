@@ -1,10 +1,24 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ruggerifrontend/controller/login_controller.dart';
 
-class AuthController extends GetxController {
-  RxBool isAuthenticated = false.obs;
+class AuthMiddleware extends GetMiddleware {
+  Future<void> checkTokenAndNavigate(String? route) async {
+    final LoginController loginController = Get.put(LoginController());
+    bool tokenValido = await loginController.validarToken();
 
-  void setAuthenticated(bool value) {
-    isAuthenticated.value = value;
+    print("Middleware Chamado para autenticação:");
+    if (!tokenValido && route != '/login') {
+      print("Não autenticado, retorna pra Login");
+      Get.offAllNamed('/login');
+    }
+  }
+
+  @override
+  RouteSettings? redirect(String? route) {
+    checkTokenAndNavigate(route);
+    return null;
   }
 }

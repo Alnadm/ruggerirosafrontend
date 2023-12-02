@@ -5,9 +5,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'package:ruggerifrontend/endpoints.dart';
-import 'package:ruggerifrontend/home/info_card.dart';
+import 'package:ruggerifrontend/controller/file_uploader_controller.dart';
+
+import 'package:ruggerifrontend/controller/info_list_controller.dart';
 import 'package:ruggerifrontend/home/modal_bottom.dart';
 
 class FileUploader extends StatefulWidget {
@@ -19,6 +19,8 @@ class _FileUploaderState extends State<FileUploader> {
   String _filePath = '';
   String _fileContent = '';
   InfoListController controllerInfoList = Get.put(InfoListController());
+  FileUploaderController controllerFileUploader =
+      Get.put(FileUploaderController());
   BottomModalController controllerBottomModal = BottomModalController();
   late Future<void> _uploadFileFuture = Future.value(null);
 
@@ -94,10 +96,7 @@ class _FileUploaderState extends State<FileUploader> {
         },
       );
 
-      final response = await http.post(
-        Uri.parse(Endpoints().enviaCSV),
-        body: {'csv': fileContent},
-      );
+      var response = await controllerFileUploader.upload(fileContent);
 
       Navigator.pop(context); // Close the loading indicator dialog
 
@@ -219,7 +218,7 @@ class _FileUploaderState extends State<FileUploader> {
           ),
         ),
 
-        // Use FutureBuilder only when needed
+        // Use FutureBuilder only when neede  d
         if (_uploadFileFuture != null)
           FutureBuilder(
             future: _uploadFileFuture,

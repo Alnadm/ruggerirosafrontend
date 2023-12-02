@@ -14,7 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final AuthController authController = Get.put(AuthController());
+  final AuthMiddleware authController = Get.put(AuthMiddleware());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -24,19 +24,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => Home()),
         GetPage(
-            name: '/login', page: () => Login(), transition: Transition.fadeIn),
+          name: '/',
+          page: () => Home(),
+          middlewares: [authController],
+        ),
+        GetPage(
+          name: '/login',
+          page: () => Login(),
+          transition: Transition.fadeIn,
+        ),
       ],
-      home: GetBuilder<AuthController>(
-        builder: (controller) {
-          return controller.isAuthenticated.value ? Home() : Login();
-        },
-      ),
-      // Add AuthObserver to observe route changes
-      // navigatorObservers: [
-      //   // AuthObserver(),
-      // ],
     );
   }
 }
