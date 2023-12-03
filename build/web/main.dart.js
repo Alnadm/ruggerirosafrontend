@@ -84131,7 +84131,7 @@ anZ(a,b){var s=0,r=A.N(t.Wd),q,p=this,o,n,m,l,k,j
 var $async$uU=A.O(function(c,d){if(c===1)return A.K(d,r)
 while(true)switch(s){case 0:o=t.N
 n=A
-m=A.eo("https://aliancajuridico.rj.r.appspot.com/remoto",0,null)
+m=A.eo("https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto",0,null)
 l=A.ay(["csv",b],o,o)
 k=A
 j="Authorization"
@@ -84154,7 +84154,7 @@ return A.P(n.ax.mo(),$async$na)
 case 6:m=b
 g=t.N
 s=7
-return A.P(A.aC_(A.eo("https://aliancajuridico.rj.r.appspot.com/remoto/todos?page="+n.cx+"&size=30",0,null),A.ay(["Authorization",m,"Content-Type","application/json"],g,g)),$async$na)
+return A.P(A.aC_(A.eo("https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto/todos?page="+n.cx+"&size=30",0,null),A.ay(["Authorization",m,"Content-Type","application/json"],g,g)),$async$na)
 case 7:l=b
 s=l.b===200?8:10
 break
@@ -84204,7 +84204,7 @@ s=q}while(true)switch(s){case 0:q=3
 n.db.sl(0,!0)
 h=t.N
 m=A.ay(["token",a],h,t.z)
-g=A.eo("https://aliancajuridico.rj.r.appspot.com/remoto/token",0,null)
+g=A.eo("https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto/token",0,null)
 d=A
 c="Authorization"
 s=6
@@ -84355,7 +84355,7 @@ var $async$ud=A.O(function(c,d){if(c===1){p=d
 s=q}while(true)switch(s){case 0:k=t.N
 j=t.z
 s=2
-return A.P(A.au9(A.eo("https://aliancajuridico.rj.r.appspot.com/auth/authenticate",0,null),B.aR.G6(A.ay(["email",a,"password",b],k,j),null),A.ay(["Content-Type","application/json"],k,k)),$async$ud)
+return A.P(A.au9(A.eo("https://staging-api-dot-aliancajuridico.rj.r.appspot.com/auth/authenticate",0,null),B.aR.G6(A.ay(["email",a,"password",b],k,j),null),A.ay(["Content-Type","application/json"],k,k)),$async$ud)
 case 2:i=d
 q=4
 s=i.b===200?7:9
@@ -84399,7 +84399,7 @@ case 3:n=b
 A.d4(n)
 o=t.N
 s=4
-return A.P(A.aC_(A.eo("https://aliancajuridico.rj.r.appspot.com/validateToken",0,null),A.ay(["Authorization",n,"Content-Type","application/json"],o,o)),$async$uW)
+return A.P(A.aC_(A.eo("https://staging-api-dot-aliancajuridico.rj.r.appspot.com/validateToken",0,null),A.ay(["Authorization",n,"Content-Type","application/json"],o,o)),$async$uW)
 case 4:o=b.b
 if(o===200){A.d4("Token v\xe1lido")
 q=!0
