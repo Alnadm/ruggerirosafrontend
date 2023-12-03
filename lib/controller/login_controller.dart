@@ -59,7 +59,7 @@ class LoginController extends GetxController {
 
   Future<bool> validarToken() async {
     String storedToken = await getToken();
-    print(storedToken);
+    //print(storedToken);
     var url = Uri.parse(Endpoints().validaToken);
     var response = await http.get(
       url,
