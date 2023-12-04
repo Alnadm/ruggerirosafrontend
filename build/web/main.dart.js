@@ -84154,7 +84154,7 @@ return A.P(n.ax.mo(),$async$na)
 case 6:m=b
 g=t.N
 s=7
-return A.P(A.aC_(A.eo("https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto/todos?page="+n.cx+"&size=60",0,null),A.ay(["Authorization",m,"Content-Type","application/json"],g,g)),$async$na)
+return A.P(A.aC_(A.eo("https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto/todos?page="+n.cx+"&size=100",0,null),A.ay(["Authorization",m,"Content-Type","application/json"],g,g)),$async$na)
 case 7:l=b
 s=l.b===200?8:10
 break

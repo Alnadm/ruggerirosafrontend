@@ -16,7 +16,7 @@ class InfoListController extends GetxController {
   RxList<dynamic> listAll = <dynamic>[].obs;
   RxList<dynamic> _selectedTokenLote = <dynamic>[].obs;
   int currentPage = 0;
-  int pageSize = 60;
+  int pageSize = 100;
   var isFetching = false.obs;
   var uploadAll = false.obs;
 
