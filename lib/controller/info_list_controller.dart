@@ -167,9 +167,9 @@ class InfoListController extends GetxController {
     listTokens.add(tokenGroup);
     listTokens.sort((a, b) {
       DateTime dateA =
-          DateFormat("dd/MM/yyyy hh:mm").parse(a.first['dataInsercao']);
+          DateFormat("dd/MM/yyyy HH:mm").parse(a.first['dataInsercao']);
       DateTime dateB =
-          DateFormat("dd/MM/yyyy hh:mm").parse(b.first['dataInsercao']);
+          DateFormat("dd/MM/yyyy HH:mm").parse(b.first['dataInsercao']);
       return dateB.compareTo(dateA);
     });
   }
