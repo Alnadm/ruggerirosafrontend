@@ -121,7 +121,7 @@ class _InfoCardModalState extends State<InfoCardModal>
           padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
