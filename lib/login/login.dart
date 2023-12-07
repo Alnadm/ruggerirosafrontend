@@ -150,6 +150,7 @@ class Login extends StatelessWidget {
                               maxLines: 1,
                               controller: _senhaController,
                               //maxLength: 200,
+                              obscureText: true,
                               decoration: const InputDecoration(
                                 labelText: "Senha",
                                 labelStyle: TextStyle(
