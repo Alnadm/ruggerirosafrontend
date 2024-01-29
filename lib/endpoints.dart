@@ -9,15 +9,15 @@ class Endpoints {
   // String validaToken = "http://localhost:8081/validateToken";
 
   String enviaCSV =
-      "https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto";
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/remoto";
   String recebeComunicadosPaginacao(int page, int size) {
-    return "https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto/todos?page=$page&size=$size";
+    return "https://production-api-dot-aliancajuridico.rj.r.appspot.com/remoto/todos?page=$page&size=$size";
   }
 
   String recebeUmComunicado =
-      "https://staging-api-dot-aliancajuridico.rj.r.appspot.com/remoto/token";
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/remoto/token";
   String autenticaLogin =
-      "https://staging-api-dot-aliancajuridico.rj.r.appspot.com/auth/authenticate";
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/auth/authenticate";
   String validaToken =
-      "https://staging-api-dot-aliancajuridico.rj.r.appspot.com/validateToken";
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/validateToken";
 }
