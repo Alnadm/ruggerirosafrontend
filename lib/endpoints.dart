@@ -8,12 +8,25 @@ class Endpoints {
   // String autenticaLogin = "http://localhost:8081/auth/authenticate";
   // String validaToken = "http://localhost:8081/validateToken";
 
-  String enviaCSV = "http://34.132.194.110:80/remoto";
+  // String enviaCSV = "http://34.132.194.110:80/remoto";
+  // String recebeComunicadosPaginacao(int page, int size) {
+  //   return "http://34.132.194.110:80/remoto/todos?page=$page&size=$size";
+  // }
+
+  // String recebeUmComunicado = "http://34.132.194.110:80/remoto/token";
+  // String autenticaLogin = "http://34.132.194.110:80/auth/authenticate";
+  // String validaToken = "http://34.132.194.110:80/validateToken";
+
+  String enviaCSV =
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/remoto";
   String recebeComunicadosPaginacao(int page, int size) {
-    return "http://34.132.194.110:80/remoto/todos?page=$page&size=$size";
+    return "https://production-api-dot-aliancajuridico.rj.r.appspot.com/remoto/todos?page=$page&size=$size";
   }
 
-  String recebeUmComunicado = "http://34.132.194.110:80/remoto/token";
-  String autenticaLogin = "http://34.132.194.110:80/auth/authenticate";
-  String validaToken = "http://34.132.194.110:80/validateToken";
+  String recebeUmComunicado =
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/remoto/token";
+  String autenticaLogin =
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/auth/authenticate";
+  String validaToken =
+      "https://production-api-dot-aliancajuridico.rj.r.appspot.com/validateToken";
 }
