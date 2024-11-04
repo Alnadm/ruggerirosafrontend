@@ -1,8 +1,8 @@
 version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
 options: "676e41127c06b3b5b8ac52d992dfc191ce2c3cdbe1af715e831cf284380c66ce"
-build_start_time: [1717435079, 542907000]
-build_end_time: [1717435081, 487389000]
+build_start_time: [1730730250, 265666000]
+build_end_time: [1730730251, 954204000]
 inputs:
-  "/Users/pedrosemensato/Development/projetos/alianca/ruggerirosa/ruggerifrontend/macos/Flutter/GeneratedPluginRegistrant.swift": [1717435072, 824025140]
+  "/Users/pedrosemensato/Development/projetos/alianca/ruggerirosa/ruggerifrontend/macos/Flutter/GeneratedPluginRegistrant.swift": [1730730240, 219228936]
   "/Users/pedrosemensato/Development/projetos/alianca/ruggerirosa/ruggerifrontend/macos/Runner/AppDelegate.swift": [1656682103, 0]
   "/Users/pedrosemensato/Development/projetos/alianca/ruggerirosa/ruggerifrontend/macos/Runner/MainFlutterWindow.swift": [1689799903, 591948170]

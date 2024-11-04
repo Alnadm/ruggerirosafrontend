@@ -34,6 +34,9 @@ class InfoListController extends GetxController {
   Future<void> fetchAllComunicados() async {
     try {
       isFetching.value = true;
+      currentPage = 0;
+      listAll.clear();
+      listTokens.clear();
       String token = await loginController.getToken();
 
       final response = await http.get(
@@ -63,6 +66,27 @@ class InfoListController extends GetxController {
       }
     } catch (e) {
       print('Error InfoController All Tokens: $e');
+    } finally {
+      isFetching.value = false;
+      currentPage = 0;
+    }
+  }
+
+  Future<void> fetchLatestData() async {
+    try {
+      isFetching.value = true;
+      currentPage = 0;
+      listAll.clear();
+      listTokens.clear();
+      await fetchAllComunicados();
+      // Optionally, refresh the selected token's data
+      if (_selectedTokenLote.isNotEmpty) {
+        String currentToken = _selectedTokenLote.first['token'];
+        await getListForToken(currentToken);
+      }
+    } catch (e) {
+      print('Error fetching latest data: $e');
+      Get.snackbar('Erro', 'Falha ao atualizar os dados.');
     } finally {
       isFetching.value = false;
     }
@@ -200,5 +224,43 @@ class InfoListController extends GetxController {
           DateFormat("dd/MM/yyyy hh:mm").parse(b.first['dataInsercao']);
       return dateB.compareTo(dateA);
     });
+  }
+
+  Future<int> updateAndSendMail(
+      {required String email,
+      required String name,
+      required int comunicadoId,
+      required String token}) async {
+    try {
+      // Implement your API call logic here
+      isFetching.value = true;
+
+      Map<String, dynamic> requestBody = {
+        'comunicadoId': comunicadoId,
+        'token': token,
+        'emailSindico': email,
+        'nomeSindico': name,
+      };
+
+      final response = await http.post(
+        Uri.parse(Endpoints().updateComunicado),
+        headers: {
+          'Authorization': await loginController.getToken(),
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(requestBody),
+      );
+
+      return response.statusCode;
+      // if (response.statusCode == 200) {
+      //   Get.snackbar('Sucesso', 'Email enviado com sucesso.');
+      // } else {
+      //   Get.snackbar('Erro', 'Falha ao enviar os dados.');
+      // }
+    } catch (e) {
+      print("Excessão identificada no updateAndSendMail");
+      return 500;
+      // Get.snackbar('Erro', 'Ocorreu um erro: $e');
+    }
   }
 }
