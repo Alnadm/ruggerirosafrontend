@@ -19,6 +19,8 @@ class Endpoints {
       "https://aliancadevelopers.com/sistemajuridico/auth/authenticate";
   String validaToken =
       "https://aliancadevelopers.com/sistemajuridico/validateToken";
+  String updateComunicado =
+      "http://localhost:8081/sistemajuridico/updateAndRetry";
 
   // String enviaCSV =
   //     "https://production-api-dot-aliancajuridico.rj.r.appspot.com/remoto";
