@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ruggerifrontend/controller/info_list_controller.dart';
 
 import 'package:ruggerifrontend/home/info_list_modal.dart';
 
 class BottomModalController extends GetxController {
   PersistentBottomSheetController? _bottomSheetController;
+  final InfoListController controller = Get.put(InfoListController());
+
+  Future<void> atualizaLista() async {
+    await controller.fetchAllComunicados();
+  }
 
   Future<void> controlaModal(BuildContext context, String token) async {
     _bottomSheetController = await showModalBottomSheet(
@@ -53,9 +59,6 @@ class _BottomModalState extends State<BottomModal> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Your main content goes here
-
-        // Modal
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
           height: MediaQuery.of(context).size.height * 0.95,
@@ -87,6 +90,7 @@ class _BottomModalState extends State<BottomModal> {
                       .withOpacity(0.4),
                   icon: const Icon(Icons.close),
                   onPressed: () {
+                    BottomModalController().atualizaLista();
                     Navigator.of(context).pop();
                   },
                 ),
