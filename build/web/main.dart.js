@@ -84468,7 +84468,7 @@ s=p}while(true)switch(s){case 0:p=4
 n.db.sl(0,!0)
 k=t.N
 m=A.ax(["comunicadoId",a,"token",d,"emailSindico",b,"nomeSindico",c],k,t.z)
-j=A.eh("http://localhost:8081/sistemajuridico/updateAndRetry",0,null)
+j=A.eh("https://aliancadevelopers.com/sistemajuridico/updateAndRetry",0,null)
 g=A
 f="Authorization"
 s=7
