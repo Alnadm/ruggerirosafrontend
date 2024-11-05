@@ -103,13 +103,61 @@ class Login extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 30, 70, 10),
                             child: Center(
+                              child: AutofillGroup(
+                                child: TextFormField(
+                                  maxLines: 1,
+                                  controller: _emailController,
+                                  //maxLength: 200
+                                  autofillHints: [AutofillHints.email],
+                                  decoration: InputDecoration(
+                                    labelText: "Usuário",
+                                    labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600),
+                                    fillColor: Colors.white,
+                                    focusedBorder: UnderlineInputBorder(
+                                      // borderRadius: BorderRadius.circular(10.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    contentPadding: EdgeInsets.only(
+                                      bottom: 10.0,
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      //borderRadius: BorderRadius.circular(10.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300),
+                                  validator: (value) => value!.isEmpty
+                                      ? "Campo obrigatório"
+                                      : null,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 70, 20),
+                            child: AutofillGroup(
                               child: TextFormField(
                                 maxLines: 1,
-                                controller: _emailController,
+                                controller: _senhaController,
+                                autofillHints: [AutofillHints.password],
                                 //maxLength: 200,
-
-                                decoration: InputDecoration(
-                                  labelText: "Usuário",
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  labelText: "Senha",
                                   labelStyle: TextStyle(
                                       color: Colors.black,
                                       fontSize: 15,
@@ -126,7 +174,7 @@ class Login extends StatelessWidget {
                                     bottom: 10.0,
                                   ),
                                   enabledBorder: UnderlineInputBorder(
-                                    //borderRadius: BorderRadius.circular(10.0),
+                                    // borderRadius: BorderRadius.circular(10.0),
                                     borderSide: BorderSide(
                                       color: Colors.black,
                                       width: 1.0,
@@ -137,52 +185,10 @@ class Login extends StatelessWidget {
                                     color: Colors.black,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w300),
+                                //style: AppStyle.defaultFormFieldText,
                                 validator: (value) =>
                                     value!.isEmpty ? "Campo obrigatório" : null,
                               ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 70, 20),
-                            child: TextFormField(
-                              maxLines: 1,
-                              controller: _senhaController,
-                              //maxLength: 200,
-                              obscureText: true,
-                              decoration: const InputDecoration(
-                                labelText: "Senha",
-                                labelStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600),
-                                fillColor: Colors.white,
-                                focusedBorder: UnderlineInputBorder(
-                                  // borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                    width: 2.0,
-                                  ),
-                                ),
-                                contentPadding: EdgeInsets.only(
-                                  bottom: 10.0,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  // borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                    width: 1.0,
-                                  ),
-                                ),
-                              ),
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w300),
-                              //style: AppStyle.defaultFormFieldText,
-                              validator: (value) =>
-                                  value!.isEmpty ? "Campo obrigatório" : null,
                             ),
                           ),
                         ),
